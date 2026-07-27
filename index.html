@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Grande Síntese — Curso Magistral de Filosofia</title>
+  <meta name="description" content="Um curso magistral de 28 capitulos e 7 modulos percorrendo 2.500 anos de filosofia — do Oriente antigo ao existencialismo moderno e a psicologia analitica." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --gold:#c9a84c;--gold-light:#e8c97a;--gold-dark:#8a6820;
+      --navy:#0a0e1a;--navy-mid:#121828;--navy-light:#1c2540;--navy-card:#162035;
+      --glass-bg:rgba(255,255,255,0.04);--glass-border:rgba(201,168,76,0.2);
+      --text-primary:#f0e8d5;--text-muted:#9aa0b8;
+      --radius-lg:1.25rem;--radius-xl:2rem;
+      --shadow-gold:0 0 40px rgba(201,168,76,0.15);
+      --transition:all 0.35s cubic-bezier(0.4,0,0.2,1)
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--text-primary);min-height:100vh;overflow-x:hidden}
+    .starfield{position:fixed;inset:0;z-index:0;pointer-events:none;
+      background:radial-gradient(ellipse at 20% 50%,rgba(30,40,80,0.6) 0%,transparent 60%),
+      radial-gradient(ellipse at 80% 20%,rgba(60,30,80,0.4) 0%,transparent 50%),var(--navy)}
+    .starfield::before,.starfield::after{content:'';position:absolute;inset:0;
+      background-image:radial-gradient(1px 1px at 10% 15%,rgba(201,168,76,0.6) 0%,transparent 100%),
+      radial-gradient(1px 1px at 25% 40%,rgba(255,255,255,0.5) 0%,transparent 100%),
+      radial-gradient(1px 1px at 60% 10%,rgba(201,168,76,0.4) 0%,transparent 100%),
+      radial-gradient(1px 1px at 75% 65%,rgba(255,255,255,0.6) 0%,transparent 100%),
+      radial-gradient(1px 1px at 90% 30%,rgba(201,168,76,0.5) 0%,transparent 100%),
+      radial-gradient(1px 1px at 45% 80%,rgba(255,255,255,0.4) 0%,transparent 100%),
+      radial-gradient(1.5px 1.5px at 35% 55%,rgba(255,255,255,0.7) 0%,transparent 100%),
+      radial-gradient(1px 1px at 82% 82%,rgba(255,255,255,0.5) 0%,transparent 100%);
+      animation:twinkle 6s ease-in-out infinite alternate}
+    .starfield::after{background-image:radial-gradient(1px 1px at 5% 90%,rgba(255,255,255,0.5) 0%,transparent 100%),
+      radial-gradient(1px 1px at 40% 20%,rgba(201,168,76,0.4) 0%,transparent 100%),
+      radial-gradient(1.5px 1.5px at 70% 50%,rgba(255,255,255,0.6) 0%,transparent 100%),
+      radial-gradient(1px 1px at 95% 75%,rgba(201,168,76,0.5) 0%,transparent 100%),
+      radial-gradient(1px 1px at 88% 12%,rgba(201,168,76,0.6) 0%,transparent 100%);
+      animation-delay:-3s;animation-duration:8s}
+    @keyframes twinkle{0%{opacity:0.4}50%{opacity:1}100%{opacity:0.5}}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;
+      justify-content:space-between;padding:1rem 3rem;
+      background:rgba(10,14,26,0.85);backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--glass-border);transition:var(--transition)}
+    .nav-logo{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;
+      background:linear-gradient(135deg,var(--gold),var(--gold-light));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;letter-spacing:0.05em}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.875rem;
+      letter-spacing:0.05em;text-transform:uppercase;transition:var(--transition);position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;
+      background:var(--gold);transform:scaleX(0);transform-origin:center;transition:transform 0.3s ease}
+    .nav-links a:hover{color:var(--gold-light)}
+    .nav-links a:hover::after{transform:scaleX(1)}
+    /* Hamburguer mobile */
+    .nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;
+      cursor:pointer;padding:4px;z-index:1100}
+    .nav-hamburger span{display:block;width:22px;height:2px;background:var(--gold);
+      border-radius:2px;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);transform-origin:center}
+    .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+    .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav-mobile-overlay{position:fixed;inset:0;z-index:999;background:rgba(5,8,18,0.97);
+      backdrop-filter:blur(16px);display:flex;flex-direction:column;align-items:center;
+      justify-content:center;gap:2.5rem;opacity:0;pointer-events:none;
+      transition:opacity 0.35s ease}
+    .nav-mobile-overlay.open{opacity:1;pointer-events:all}
+    .nav-mobile-overlay a{font-family:'Cinzel',serif;font-size:1.6rem;font-weight:700;
+      color:var(--text-primary);text-decoration:none;letter-spacing:0.08em;
+      transition:color 0.25s ease;opacity:0;transform:translateY(20px);
+      transition:all 0.4s ease}
+    .nav-mobile-overlay.open a{opacity:1;transform:translateY(0)}
+    .nav-mobile-overlay.open a:nth-child(1){transition-delay:0.05s}
+    .nav-mobile-overlay.open a:nth-child(2){transition-delay:0.12s}
+    .nav-mobile-overlay.open a:nth-child(3){transition-delay:0.19s}
+    .nav-mobile-overlay a:hover{color:var(--gold)}
+    #hero{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;
+      justify-content:center;text-align:center;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background-image:url('assets/images/hero.png');
+      background-size:cover;background-position:center;
+      filter:brightness(0.3) saturate(1.2);transform:scale(1.05);
+      animation:slowzoom 20s ease-in-out infinite alternate}
+    @keyframes slowzoom{from{transform:scale(1.05)}to{transform:scale(1.12)}}
+    .hero-overlay{position:absolute;inset:0;
+      background:linear-gradient(to bottom,rgba(10,14,26,0.3) 0%,rgba(10,14,26,0.1) 40%,rgba(10,14,26,0.7) 80%,var(--navy) 100%)}
+    .hero-content{position:relative;z-index:2;max-width:900px;padding:2rem}
+    .hero-eyebrow{font-size:0.8rem;letter-spacing:0.4em;text-transform:uppercase;
+      color:var(--gold);margin-bottom:1.5rem;animation:fadeInDown 1s ease both}
+    .hero-title{font-family:'Cinzel',serif;font-size:clamp(3rem,8vw,6rem);font-weight:900;
+      line-height:1.05;background:linear-gradient(135deg,#fff 0%,var(--gold-light) 50%,var(--gold) 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      margin-bottom:1.5rem;animation:fadeInUp 1s 0.2s ease both}
+    .hero-subtitle{font-family:'Crimson Text',serif;font-size:clamp(1.1rem,2.5vw,1.5rem);
+      color:rgba(240,232,213,0.8);font-style:italic;line-height:1.6;
+      max-width:680px;margin:0 auto 2.5rem;animation:fadeInUp 1s 0.4s ease both}
+    .hero-stats{display:flex;gap:3rem;justify-content:center;margin-bottom:3rem;animation:fadeInUp 1s 0.6s ease both}
+    .stat{text-align:center}
+    .stat-number{font-family:'Cinzel',serif;font-size:2.5rem;font-weight:700;color:var(--gold);display:block;line-height:1}
+    .stat-label{font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-top:0.3rem}
+    .hero-cta{display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2.5rem;
+      background:linear-gradient(135deg,var(--gold-dark),var(--gold));color:var(--navy);
+      font-weight:600;font-size:0.9rem;letter-spacing:0.1em;text-transform:uppercase;
+      border:none;border-radius:100px;cursor:pointer;text-decoration:none;
+      box-shadow:0 8px 32px rgba(201,168,76,0.4);transition:var(--transition);animation:fadeInUp 1s 0.8s ease both}
+    .hero-cta:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(201,168,76,0.6)}
+    .hero-cta svg{width:18px;height:18px}
+    .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+      display:flex;flex-direction:column;align-items:center;gap:0.5rem;
+      color:var(--text-muted);font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;z-index:2;
+      animation:bounce 2s ease infinite}
+    @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+    section{position:relative;z-index:1}
+    .section-header{text-align:center;margin-bottom:4rem}
+    .section-eyebrow{font-size:0.75rem;letter-spacing:0.4em;text-transform:uppercase;
+      color:var(--gold);margin-bottom:1rem;display:block}
+    .section-title{font-family:'Cinzel',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;
+      background:linear-gradient(135deg,var(--text-primary),var(--gold-light));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.2}
+    .section-divider{width:80px;height:2px;margin:1.5rem auto 0;
+      background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+    #modules{padding:8rem 2rem}
+    .modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:1.5rem;max-width:1200px;margin:0 auto}
+    .module-card{background:var(--glass-bg);border:1px solid var(--glass-border);
+      border-radius:var(--radius-lg);padding:2rem;backdrop-filter:blur(12px);
+      transition:var(--transition);cursor:pointer;position:relative;overflow:hidden}
+    .module-card::before{content:'';position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(201,168,76,0.08) 0%,transparent 60%);opacity:0;transition:var(--transition)}
+    .module-card:hover{transform:translateY(-6px);border-color:rgba(201,168,76,0.5);box-shadow:var(--shadow-gold)}
+    .module-card:hover::before{opacity:1}
+    .module-number{font-family:'Cinzel',serif;font-size:3rem;font-weight:900;
+      color:rgba(201,168,76,0.15);line-height:1;margin-bottom:0.5rem}
+    .module-tag{font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem}
+    .module-title{font-family:'Cinzel',serif;font-size:1.1rem;font-weight:600;
+      color:var(--text-primary);margin-bottom:1rem;line-height:1.4}
+    .module-chapters{list-style:none;display:flex;flex-direction:column;gap:0.4rem}
+    .module-chapters li{font-size:0.82rem;color:var(--text-muted);padding-left:1rem;position:relative}
+    .module-chapters li::before{content:'\203A';position:absolute;left:0;color:var(--gold)}
+    #gallery{padding:6rem 2rem;background:linear-gradient(to bottom,transparent,rgba(18,24,40,0.5),transparent)}
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+      gap:2rem;max-width:1200px;margin:0 auto}
+    .chapter-card{background:var(--navy-card);border:1px solid rgba(201,168,76,0.12);
+      border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition);cursor:pointer}
+    .chapter-card:hover{transform:translateY(-8px) scale(1.01);
+      box-shadow:0 24px 60px rgba(0,0,0,0.5),var(--shadow-gold);border-color:rgba(201,168,76,0.4)}
+    .chapter-img-wrap{position:relative;height:220px;overflow:hidden}
+    .chapter-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;filter:brightness(0.85) saturate(1.1)}
+    .chapter-card:hover .chapter-img-wrap img{transform:scale(1.08);filter:brightness(1) saturate(1.2)}
+    .chapter-img-overlay{position:absolute;inset:0;
+      background:linear-gradient(to top,rgba(22,32,53,0.95) 0%,rgba(22,32,53,0.3) 50%,transparent 100%)}
+    .chapter-num-badge{position:absolute;top:1rem;left:1rem;background:rgba(201,168,76,0.9);
+      color:var(--navy);font-family:'Cinzel',serif;font-size:0.75rem;font-weight:700;
+      padding:0.3rem 0.7rem;border-radius:100px;letter-spacing:0.1em}
+    .module-badge{position:absolute;top:1rem;right:1rem;background:rgba(10,14,26,0.8);
+      color:var(--text-muted);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;
+      padding:0.3rem 0.7rem;border-radius:100px;border:1px solid var(--glass-border)}
+    .chapter-body{padding:1.5rem}
+    .chapter-philosopher{font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem}
+    .chapter-title{font-family:'Cinzel',serif;font-size:1rem;font-weight:600;line-height:1.4;color:var(--text-primary);margin-bottom:0.75rem}
+    .chapter-desc{font-family:'Crimson Text',serif;font-size:0.95rem;color:var(--text-muted);line-height:1.6;margin-bottom:1.25rem}
+    .chapter-read-btn{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;
+      letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);
+      background:none;border:none;cursor:pointer;font-weight:600;transition:var(--transition);font-family:'Inter',sans-serif}
+    .chapter-read-btn svg{width:14px;height:14px;transition:transform 0.3s ease}
+    .chapter-read-btn:hover{color:var(--gold-light)}
+    .chapter-read-btn:hover svg{transform:translateX(4px)}
+    #chapters{padding:6rem 2rem}
+    .chapters-container{max-width:900px;margin:0 auto}
+    .chapter-list-item{display:flex;align-items:center;gap:1.5rem;padding:1.25rem 1.5rem;
+      border:1px solid transparent;border-radius:var(--radius-lg);transition:var(--transition);
+      cursor:pointer;text-decoration:none;color:inherit;margin-bottom:0.75rem;background:none}
+    .chapter-list-item:hover{background:var(--glass-bg);border-color:var(--glass-border);transform:translateX(8px)}
+    .chapter-list-num{font-family:'Cinzel',serif;font-size:1.5rem;font-weight:700;
+      color:rgba(201,168,76,0.3);min-width:3rem;text-align:center;line-height:1}
+    .chapter-list-item:hover .chapter-list-num{color:var(--gold)}
+    .chapter-list-divider{width:1px;height:40px;background:var(--glass-border);flex-shrink:0}
+    .chapter-list-info{flex:1}
+    .chapter-list-author{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold)}
+    .chapter-list-title{font-family:'Cinzel',serif;font-size:0.95rem;color:var(--text-primary);margin-top:0.2rem}
+    .chapter-list-module{font-size:0.7rem;color:var(--text-muted);margin-top:0.25rem}
+    .chapter-list-arrow{color:var(--text-muted);transition:var(--transition)}
+    .chapter-list-item:hover .chapter-list-arrow{color:var(--gold);transform:translateX(4px)}
+    .module-section-header{display:flex;align-items:center;gap:1rem;margin:3rem 0 1rem}
+    .module-section-header .mod-line{flex:1;height:1px;background:var(--glass-border)}
+    .module-section-header .mod-label{font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+    #quote{padding:8rem 2rem;text-align:center;position:relative}
+    .quote-bg{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(201,168,76,0.05) 0%,transparent 70%)}
+    .quote-mark{font-family:'Cinzel',serif;font-size:10rem;line-height:0.5;color:rgba(201,168,76,0.1);display:block;margin-bottom:1rem}
+    blockquote{font-family:'Crimson Text',serif;font-size:clamp(1.5rem,3.5vw,2.5rem);font-style:italic;
+      color:var(--text-primary);max-width:800px;margin:0 auto 2rem;line-height:1.5;position:relative;z-index:1}
+    .quote-author{font-size:0.85rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);position:relative;z-index:1}
+    .modal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(5,8,18,0.95);
+      backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;
+      padding:2rem;overflow-y:auto}
+    .modal-overlay.active{display:flex}
+    .modal{background:var(--navy-mid);border:1px solid var(--glass-border);border-radius:var(--radius-xl);
+      max-width:840px;width:100%;margin:auto;
+      box-shadow:0 40px 120px rgba(0,0,0,0.8),var(--shadow-gold);overflow:hidden;
+      animation:modalIn 0.4s cubic-bezier(0.16,1,0.3,1) both}
+    @keyframes modalIn{from{opacity:0;transform:translateY(40px) scale(0.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+    .modal-header{position:relative;height:280px;overflow:hidden}
+    .modal-header img{width:100%;height:100%;object-fit:cover;filter:brightness(0.5) saturate(1.2)}
+    .modal-header-overlay{position:absolute;inset:0;
+      background:linear-gradient(to top,var(--navy-mid) 0%,rgba(18,24,40,0.4) 60%,transparent 100%)}
+    .modal-header-content{position:absolute;bottom:0;left:0;right:0;padding:2rem 2.5rem}
+    .modal-chapter-num{font-family:'Cinzel',serif;font-size:0.8rem;letter-spacing:0.3em;color:var(--gold);margin-bottom:0.5rem}
+    .modal-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,3vw,2rem);font-weight:700;color:#fff;line-height:1.3}
+    .modal-close{position:absolute;top:1rem;right:1rem;background:rgba(10,14,26,0.8);
+      border:1px solid var(--glass-border);color:var(--text-muted);width:40px;height:40px;
+      border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;
+      font-size:1.2rem;transition:var(--transition);z-index:10}
+    .modal-close:hover{color:#fff;background:rgba(201,168,76,0.2);border-color:var(--gold)}
+    .modal-body{padding:2.5rem;font-family:'Crimson Text',serif;font-size:1.05rem;
+      line-height:1.85;color:var(--text-primary);max-height:65vh;overflow-y:auto}
+    .modal-body::-webkit-scrollbar{width:4px}
+    .modal-body::-webkit-scrollbar-track{background:var(--navy-light)}
+    .modal-body::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:2px}
+    .modal-body h1,.modal-body h2,.modal-body h3,.modal-body h4,.modal-body h5{font-family:'Cinzel',serif;color:var(--gold);margin:2rem 0 0.75rem;font-weight:600}
+    .modal-body h1{font-size:1.4rem}.modal-body h2{font-size:1.3rem}.modal-body h3{font-size:1.1rem}.modal-body h4{font-size:0.95rem;color:var(--gold-light)}.modal-body h5{font-size:0.85rem;color:var(--gold-light);text-transform:uppercase;letter-spacing:0.05em}
+    .modal-body p{margin-bottom:1rem}
+    .modal-body strong{color:var(--gold-light)}
+    .modal-body em{color:rgba(240,232,213,0.85)}
+    .modal-body blockquote{font-size:1rem;color:var(--text-primary);border-left:3px solid var(--gold);
+      background:rgba(201,168,76,0.05);border-radius:0 var(--radius-lg) var(--radius-lg) 0;
+      padding:1rem 1.5rem;margin:1.5rem 0}
+    .modal-body ul,.modal-body ol{padding-left:1.5rem;margin-bottom:1rem}
+    .modal-body li{margin-bottom:0.4rem}
+    /* ── Chapter Illustration Images ── */
+    .chapter-illustration{width:100%;margin:2.5rem 0;border-radius:var(--radius-lg);overflow:hidden;
+      position:relative;box-shadow:0 16px 48px rgba(0,0,0,0.6),0 0 0 1px var(--glass-border);
+      background:var(--navy-light)}
+    .chapter-illustration img{width:100%;height:340px;object-fit:cover;
+      display:block;transition:transform 0.6s ease;filter:brightness(0.92) saturate(1.15)}
+    .chapter-illustration:hover img{transform:scale(1.03);filter:brightness(1) saturate(1.25)}
+    .chapter-illustration-bar{position:absolute;bottom:0;left:0;right:0;
+      background:linear-gradient(to top,rgba(10,14,26,0.92) 0%,transparent 100%);
+      padding:1.25rem 1.5rem;display:flex;align-items:flex-end;justify-content:space-between}
+    .chapter-illustration-label{font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.25em;
+      text-transform:uppercase;color:var(--gold);opacity:0.85}
+    .chapter-illustration-num{font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.2em;
+      color:var(--text-muted);border:1px solid var(--glass-border);padding:0.2rem 0.6rem;border-radius:100px}
+    .chapter-illustration-separator{display:flex;align-items:center;gap:1rem;margin:2rem 0}
+    .chapter-illustration-separator::before,.chapter-illustration-separator::after{content:'';
+      flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--glass-border),transparent)}
+    .chapter-illustration-separator span{font-size:1rem;color:var(--gold);opacity:0.4}
+    .modal-footer{padding:1.5rem 2.5rem;border-top:1px solid var(--glass-border);
+      display:flex;gap:1rem;justify-content:flex-end;flex-wrap:wrap}
+    .btn-secondary{padding:0.7rem 1.5rem;background:var(--glass-bg);border:1px solid var(--glass-border);
+      color:var(--text-muted);border-radius:100px;cursor:pointer;font-size:0.85rem;
+      transition:var(--transition);font-family:'Inter',sans-serif}
+    .btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+    .btn-primary{padding:0.7rem 1.75rem;background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+      border:none;color:var(--navy);font-weight:600;border-radius:100px;
+      cursor:pointer;font-size:0.85rem;transition:var(--transition);font-family:'Inter',sans-serif}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,0.4)}
+    .btn-primary:disabled{opacity:0.4;cursor:default;transform:none}
+    footer{position:relative;z-index:1;border-top:1px solid var(--glass-border);padding:4rem 2rem 3rem;text-align:center}
+    .footer-logo{font-family:'Cinzel',serif;font-size:1.5rem;font-weight:700;
+      background:linear-gradient(135deg,var(--gold),var(--gold-light));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1rem}
+    .footer-text{font-family:'Crimson Text',serif;font-style:italic;font-size:1rem;
+      color:var(--text-muted);max-width:500px;margin:0 auto 2rem}
+    .footer-divider{width:60px;height:1px;background:var(--gold-dark);margin:2rem auto}
+    .footer-copy{font-size:0.75rem;letter-spacing:0.1em;color:rgba(154,160,184,0.5)}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s ease,transform 0.8s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reading-progress{position:fixed;top:0;left:0;right:0;z-index:2001;height:3px;background:transparent}
+    .reading-progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-light));transition:width 0.1s linear}
+    @media(max-width:768px){
+      nav{padding:1rem 1.5rem}
+      .nav-links{display:none}
+      .nav-hamburger{display:flex}
+      .hero-stats{gap:1.5rem}
+      .modal-body{padding:1.5rem}
+      .modal-header-content{padding:1.5rem}
+      .scroll-hint{display:none}
+      .quiz-widget { padding: 1.25rem; margin: 1.5rem 0; }
+      .debate-dois-card { padding: 1.25rem; margin: 1.5rem 0; }
+      .glossary-card { padding: 1.25rem; margin: 1.5rem 0; }
+      .mermaid { padding: 1rem; margin: 1.5rem 0; justify-content: flex-start; }
+      .chapter-illustration img { height: 220px; }
+    }
+    @media(max-height:760px){.scroll-hint{display:none}}
+    
+    /* Quiz Widget Styles */
+    .quiz-widget {
+      background: rgba(22, 32, 53, 0.45);
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2.5rem 0;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 32px rgba(10, 14, 26, 0.3);
+      text-align: left;
+    }
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+      padding-bottom: 1rem;
+    }
+    .quiz-title {
+      font-family: 'Cinzel', serif;
+      color: var(--gold-light);
+      font-size: 1.25rem;
+      margin: 0;
+      letter-spacing: 0.05em;
+    }
+    .quiz-progress {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+    .quiz-question {
+      font-size: 1.1rem;
+      color: #fff;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .quiz-opt-btn {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: rgba(10, 14, 26, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      color: rgba(240, 232, 213, 0.9);
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.25s ease;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+    .quiz-opt-btn:hover:not(:disabled) {
+      border-color: var(--gold-light);
+      background: rgba(201, 168, 76, 0.05);
+      transform: translateX(4px);
+    }
+    .quiz-opt-btn:disabled {
+      cursor: default;
+    }
+    .quiz-opt-btn.selected {
+      border-color: var(--gold);
+      background: rgba(201, 168, 76, 0.08);
+    }
+    .quiz-opt-btn.correct {
+      border-color: #2ec4b6 !important;
+      background: rgba(46, 196, 182, 0.12) !important;
+      color: #2ec4b6 !important;
+    }
+    .quiz-opt-btn.incorrect {
+      border-color: #e71d36 !important;
+      background: rgba(231, 29, 54, 0.12) !important;
+      color: #e71d36 !important;
+    }
+    .quiz-feedback {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      border-radius: 8px;
+      animation: fadeInUp 0.4s ease both;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .quiz-feedback.correct-bg {
+      background: rgba(46, 196, 182, 0.06);
+      border: 1px solid rgba(46, 196, 182, 0.15);
+    }
+    .quiz-feedback.incorrect-bg {
+      background: rgba(231, 29, 54, 0.06);
+      border: 1px solid rgba(231, 29, 54, 0.15);
+    }
+    .quiz-feedback-title {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+    }
+    .quiz-feedback-title.correct-text { color: #2ec4b6; }
+    .quiz-feedback-title.incorrect-text { color: #e71d36; }
+    .quiz-explanation {
+      color: rgba(240, 232, 213, 0.85);
+    }
+    .quiz-next-btn {
+      padding: 0.75rem 1.75rem;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: var(--navy);
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      float: right;
+      transition: all 0.25s ease;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      box-shadow: 0 4px 12px rgba(201, 168, 76, 0.25);
+    }
+      box-shadow: 0 6px 16px rgba(201, 168, 76, 0.4);
+    }
+    
+    /* Highlight Cards */
+    .debate-dois-card {
+      background: rgba(201, 168, 76, 0.03);
+      border: 1px dashed rgba(201, 168, 76, 0.25);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2.5rem 0;
+      position: relative;
+    }
+    .debate-dois-card::before {
+      content: '💬';
+      position: absolute;
+      top: -16px;
+      right: 25px;
+      font-size: 1.5rem;
+      background: var(--navy-mid);
+      padding: 0 10px;
+    }
+    .debate-dois-card h3 {
+      margin-top: 0 !important;
+      color: var(--gold-light) !important;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem !important;
+    }
+    
+    .glossary-card {
+      background: rgba(10, 14, 26, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2.5rem 0;
+    }
+    .glossary-card h3 {
+      margin-top: 0 !important;
+      color: var(--gold) !important;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem !important;
+    }
+    
+    /* Gabarito Comentado Card Styles */
+    .gabarito-comentado-container {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .gabarito-card {
+      background: rgba(201, 168, 76, 0.02);
+      border: 1px solid rgba(201, 168, 76, 0.12);
+      border-left: 3px solid var(--gold);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+    .gabarito-card:hover {
+      border-color: rgba(201, 168, 76, 0.3);
+      background: rgba(201, 168, 76, 0.04);
+      transform: translateY(-2px);
+    }
+    .gabarito-question-num {
+      font-family: 'Cinzel', serif;
+      color: var(--gold-light);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .gabarito-correct-option {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .gabarito-explanation {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    @media(max-width:768px){
+      .gabarito-card { padding: 1rem 1.25rem; }
+    }
+  </style>
+  <!-- Scripts do Curso -->
+  <script src="assets/chapters_content.js?v=1.0.3" charset="utf-8"></script>
+</head>
+<body>
+<div class="reading-progress"><div class="reading-progress-bar" id="progressBar"></div></div>
+<div class="starfield" aria-hidden="true"></div>
+<nav id="navbar" role="navigation" aria-label="Navegacao principal">
+  <div class="nav-logo">Φ A Grande Síntese</div>
+  <ul class="nav-links">
+    <li><a href="#modules">Módulos</a></li>
+    <li><a href="#gallery">Destaques</a></li>
+    <li><a href="#chapters">Todos os Capítulos</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu de navegação" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile-overlay" id="navMobileOverlay" role="dialog" aria-label="Menu de navegação mobile">
+  <a href="#modules" onclick="closeMobileNav()">Módulos</a>
+  <a href="#gallery" onclick="closeMobileNav()">Destaques</a>
+  <a href="#chapters" onclick="closeMobileNav()">Ementa Completa</a>
+</div>
+<section id="hero" aria-label="Apresentacao do curso">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">&#10022; Curso Magistral &#10022;</p>
+    <h1 class="hero-title">A Grande<br>Síntese</h1>
+    <p class="hero-subtitle">Uma jornada intelectual por 2.500 anos de sabedoria humana &mdash; da filosofia oriental e grega ao existencialismo e as profundezas da psique.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-number">28</span><span class="stat-label">Capítulos</span></div>
+      <div class="stat"><span class="stat-number">7</span><span class="stat-label">Sínteses</span></div>
+      <div class="stat"><span class="stat-number">7</span><span class="stat-label">Módulos</span></div>
+    </div>
+    <a href="#gallery" class="hero-cta" id="cta-inicio">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      Iniciar Jornada
+    </a>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">
+    <span>Role para explorar</span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+<section id="modules" aria-label="Modulos do curso">
+  <div style="max-width:1200px;margin:0 auto;padding:6rem 2rem">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">&#10022; Estrutura do Curso &#10022;</span>
+      <h2 class="section-title">7 Módulos, 7 Civilizações<br>da Mente Humana</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="modules-grid">
+      <div class="module-card reveal" onclick="document.getElementById('chapters').scrollIntoView({behavior:'smooth'})">
+        <div class="module-number">01</div><div class="module-tag">Módulo 1 &middot; Abertura e Fundamentos</div>
+        <div class="module-title">O Espanto Filosófico</div>
+        <ul class="module-chapters"><li>O Mundo de Sofia</li><li>Upanishads &mdash; Atman e Brahman</li><li>Buda &mdash; As Quatro Nobres Verdades</li><li>Síntese do Módulo 1 &mdash; Espanto, Eu e Ilusão</li></ul>
+      </div>
+      <div class="module-card reveal" style="transition-delay:0.1s" onclick="document.getElementById('chapters').scrollIntoView({behavior:'smooth'})">
+        <div class="module-number">02</div><div class="module-tag">Módulo 2 &middot; Sabedoria Oriental</div>
+        <div class="module-title">O Caminho Interior</div>
+        <ul class="module-chapters"><li>Lao Tzu &mdash; O Tao e Wu Wei</li><li>Zhuangzi &mdash; O Sonho da Borboleta</li><li>Rumi &mdash; O Amor e a Dissolução do Ego</li><li>Síntese do Módulo 2 &mdash; O Fluxo, o Vazio e o Êxtase</li></ul>
+      </div>
+      <div class="module-card reveal" style="transition-delay:0.2s" onclick="document.getElementById('chapters').scrollIntoView({behavior:'smooth'})">
+        <div class="module-number">03</div><div class="module-tag">Módulo 3 &middot; Grécia e Estoicismo</div>
+        <div class="module-title">A Razão e a Arte de Viver</div>
+        <ul class="module-chapters"><li>Sócrates &mdash; A Arte de não Saber</li><li>Platão &mdash; O Mundo das Ideias</li><li>Aristóteles &mdash; A Virtude e Eudaimonia</li><li>Epicuro &mdash; O Prazer e a Morte</li><li>Epicteto &mdash; A Dicotomia do Controle</li><li>Sêneca &mdash; A Brevidade da Vida</li><li>Marco Aurélio &mdash; O Imperador Filósofo</li><li>Síntese do Módulo 3 &mdash; A Virtude e o Equilíbrio da Alma</li></ul>
+      </div>
+      <div class="module-card reveal" style="transition-delay:0.3s" onclick="document.getElementById('chapters').scrollIntoView({behavior:'smooth'})">
+        <div class="module-number">04</div><div class="module-tag">Módulo 4 &middot; Idade Média e Transição</div>
+        <div class="module-title">Fé, Razão e Poder</div>
+        <ul class="module-chapters"><li>Santo Agostinho &mdash; Tempo e Memoria</li><li>São Tomás de Aquino &mdash; A Escolástica</li><li>Nicolau Maquiavel &mdash; O Príncipe</li><li>Síntese do Módulo 4 &mdash; Fé, Razão e o Nascimento do Poder Real</li></ul>
+      </div>
+      <div class="module-card reveal" style="transition-delay:0.4s" onclick="document.getElementById('chapters').scrollIntoView({behavior:'smooth'})">
+        <div class="module-number">05</div><div class="module-tag">Módulo 5 &middot; Contrato Social e Revolução</div>
+        <div class="module-title">Liberdade e Soberania</div>
+        <ul class="module-chapters"><li>René Descartes &mdash; Cogito Ergo Sum</li><li>Locke e Hobbes &mdash; Contrato Social</li><li>Rousseau &mdash; O Bom Selvagem</li><li>Voltaire &mdash; A Razão contra o Fanatismo</li><li>Immanuel Kant &mdash; Crítica da Razão Pura</li><li>Síntese do Módulo 5 &mdash; A Razão, o Pacto e as Sombras do Estado</li></ul>
+      </div>
+      <div class="module-card reveal" style="transition-delay:0.5s" onclick="document.getElementById('chapters').scrollIntoView({behavior:'smooth'})">
+        <div class="module-number">06</div><div class="module-tag">Módulo 6 &middot; Razão, Crítica e Modernidade</div>
+        <div class="module-title">O Abismo da Crise Moderna</div>
+        <ul class="module-chapters"><li>Karl Marx &mdash; Luta de Classes e Alienação</li><li>Arthur Schopenhauer &mdash; O Pessimismo</li><li>Friedrich Nietzsche &mdash; A Morte de Deus</li><li>Síntese do Módulo 6 &mdash; O Trabalho, a Vontade e a Superação do Niilismo</li></ul>
+      </div>
+      <div class="module-card reveal" style="transition-delay:0.6s" onclick="document.getElementById('chapters').scrollIntoView({behavior:'smooth'})">
+        <div class="module-number">07</div><div class="module-tag">Módulo 7 &middot; Existência e Inconsciente</div>
+        <div class="module-title">O Subterrâneo e a Liberdade</div>
+        <ul class="module-chapters"><li>Søren Kierkegaard &mdash; Angústia e Salto de Fé</li><li>Sartre e Beauvoir &mdash; Condenação à Liberdade</li><li>Sigmund Freud &mdash; Inconsciente e Sonhos</li><li>Carl Gustav Jung &mdash; Arquétipos e Individuação</li><li>Síntese do Módulo 7 &mdash; O Labirinto da Alma e as Fronteiras do Eu</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="quote" aria-label="Citacao filosofica">
+  <div class="quote-bg" aria-hidden="true"></div>
+  <span class="quote-mark" aria-hidden="true">"</span>
+  <blockquote id="rotating-quote">"A vida não examinada não merece ser vivida."</blockquote>
+  <p class="quote-author" id="rotating-author">&mdash; Sócrates</p>
+</section><section id="gallery" aria-label="Capitulos em destaque">
+  <div style="max-width:1200px;margin:0 auto;padding:6rem 2rem">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">&#10022; Galeria de Pensadores &#10022;</span>
+      <h2 class="section-title">Os Grandes Mestres<br>da História</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="gallery-grid" id="gallery-grid">
+    </div>
+  </div>
+</section>
+<section id="chapters" aria-label="Lista completa de capitulos">
+  <div style="max-width:1200px;margin:0 auto;padding:6rem 2rem">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">&#10022; Ementa Completa &#10022;</span>
+      <h2 class="section-title">Todos os 28 Capítulos &amp; 7 Sínteses</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="chapters-container" id="chapters-container"></div>
+  </div>
+</section>
+<footer role="contentinfo">
+  <div class="footer-logo">Φ A Grande Síntese</div>
+  <p class="footer-text">"O espanto é o início de toda sabedoria — e o começo da nossa jornada nunca termina."</p>
+  <div class="footer-divider"></div>
+  <p class="footer-copy">Curso Magistral &middot; 7 Módulos &middot; 28 Capítulos &middot; 7 Sínteses de Conexão &middot; Uma vida de reflexão</p>
+</footer>
+<div class="modal-overlay" id="readerModal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal">
+    <div class="modal-header" id="modalHeader">
+      <img src="" alt="" id="modalImg" />
+      <div class="modal-header-overlay"></div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Fechar leitor">&#10005;</button>
+      <div class="modal-header-content">
+        <div class="modal-chapter-num" id="modalChapterNum">Capitulo 00</div>
+        <h2 class="modal-title" id="modal-title">Titulo</h2>
+      </div>
+    </div>
+    <div class="modal-body" id="modalBody"><p>Carregando...</p></div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeModal()">&#8592; Voltar ao Curso</button>
+      <button class="btn-primary" id="prevBtn" onclick="navigateChapter(-1)">&#8249; Anterior</button>
+      <button class="btn-primary" id="nextBtn" onclick="navigateChapter(1)">Proximo &rsaquo;</button>
+    </div>
+  </div>
+</div>
+<script>
+const CHAPTERS = [
+  // Modulo 1 - Abertura e Fundamentos
+  {num:'01',folder:'cap_01',title:'O Mundo de Sofia',subtitle:'O Espanto Filosofico e a Carta sem Remetente',author:'Jostein Gaarder',module:'Modulo 1 - Abertura e Fundamentos',img:'assets/images/hero.png',file:'Capitulo_01_O_Mundo_de_Sofia.md',desc:'O que significa despertar filosoficamente? Uma carta anonima e a metafora do coelho cosmico como porta de entrada para a grande jornada do pensamento humano.'},
+  {num:'02',folder:'cap_02',title:'Upanishads',subtitle:'A Ilusao do Eu: Atman e Brahman',author:'Filosofia Indiana Vedica',module:'Modulo 1 - Abertura e Fundamentos',img:'assets/images/upanishads.png',file:'Capitulo_02_Upanishads.md',desc:'Voce e uma gota ou o oceano? A resposta mais radical da filosofia oriental: sua alma individual e a alma cosmica do universo sao a mesma coisa.'},
+  {num:'03',folder:'cap_03',title:'Siddhartha Gautama',subtitle:'O Despertar da Ilusao - As Quatro Nobres Verdades',author:'Buda',module:'Modulo 1 - Abertura e Fundamentos',img:'assets/images/buddha.png',file:'Capitulo_03_Siddhartha_Gautama.md',desc:'Um principe que abre mao de um palacio para decifrar o sofrimento humano. O que e Dukkha, Anicca e Anatta?'},
+  {num:'S1',folder:'cap_S1',title:'Síntese do Módulo 1',subtitle:'O Espanto, o Eu e a Ilusão',author:'A Grande Síntese',module:'Modulo 1 - Abertura e Fundamentos',img:'assets/images/hero.png',file:'Capitulo_Sintese_Modulo_1.md',desc:'Como o espanto ocidental se encontra com o mergulho interior hindu e a desconstrução budista da realidade.',isSynthesis:true},
+
+  // Modulo 2 - Sabedoria Oriental
+  {num:'04',folder:'cap_04',title:'Lao Tzu',subtitle:'A Forca do Vazio - O Tao e Wu Wei',author:'Taoismo',module:'Modulo 2 - Sabedoria Oriental',img:'assets/images/lao_tzu.png',file:'Capitulo_04_Lao_Tzu.md',desc:'O paradoxo supremo: a maior forca do universo e a rendicao. A agua que molda pedras. A acao que age atraves da nao-acao.'},
+  {num:'05',folder:'cap_22',title:'Zhuangzi',subtitle:'O Sonho da Borboleta e o Tao',author:'Taoismo Poetico',module:'Modulo 2 - Sabedoria Oriental',img:'assets/images/zhuangzi.png',file:'Capitulo_22_Zhuangzi.md',desc:'Voce e um homem que sonhou ser borboleta, ou uma borboleta que sonha ser homem? O filosofo-poeta que dissolveu as fronteiras entre realidade e ilusao com humor e sabedoria.'},
+  {num:'06',folder:'cap_23',title:'Rumi',subtitle:'O Amor Divino e a Dissolucao do Ego',author:'Sufismo Islamico',module:'Modulo 2 - Sabedoria Oriental',img:'assets/images/rumi.png',file:'Capitulo_23_Rumi.md',desc:'O maior poeta mistico da humanidade. Como o amor pode ser o caminho para o absoluto? A danca dos dervixes e a flauta de bambu como metaforas da alma.'},
+  {num:'S2',folder:'cap_S2',title:'Síntese do Módulo 2',subtitle:'O Fluxo, o Vazio e o Êxtase',author:'A Grande Síntese',module:'Modulo 2 - Sabedoria Oriental',img:'assets/images/lao_tzu.png',file:'Capitulo_Sintese_Modulo_2.md',desc:'A união da espontaneidade do Tao com a entrega mística e amorosa do Sufismo.',isSynthesis:true},
+
+  // Modulo 3 - Grecia Classica e Estoicismo
+  {num:'07',folder:'cap_05',title:'Socrates',subtitle:'O Parto da Verdade - A Arte da Maieutica',author:'Grecia Classica',module:'Modulo 3 - Grecia Classica e Estoicismo',img:'assets/images/socrates.png',file:'Capitulo_05_Socrates.md',desc:'O homem que dizia nao saber de nada transformou Atenas com perguntas. A ironia socratica e a morte que selou uma ideia para sempre.'},
+  {num:'08',folder:'cap_06',title:'Platao',subtitle:'O Mito da Caverna - O Mundo das Ideias',author:'Grecia Classica',module:'Modulo 3 - Grecia Classica e Estoicismo',img:'assets/images/platao.png',file:'Capitulo_06_Platao.md',desc:'Prisioneiros olhando sombras na parede. Uma alegoria de 2400 anos que descreve perfeitamente os algoritmos e fake news do seculo XXI.'},
+  {num:'09',folder:'cap_07',title:'Aristoteles',subtitle:'A Etica a Nicomaco - A Eudaimonia',author:'Grecia Classica',module:'Modulo 3 - Grecia Classica e Estoicismo',img:'assets/images/socrates.png',file:'Capitulo_07_Aristoteles.md',desc:'O que e uma vida bem-vivida? Aristoteles argumenta que a felicidade nao e prazer, mas florescimento humano atraves da virtude.'},
+  {num:'10',folder:'cap_24',title:'Epicuro',subtitle:'O Prazer Verdadeiro, a Morte e a Amizade',author:'Grecia Helenistica',module:'Modulo 3 - Grecia Classica e Estoicismo',img:'assets/images/epicuro.png',file:'Capitulo_24_Epicuro.md',desc:'O filosofo mais mal-interpretado da historia: Epicuro nao pregava a orgia, mas a Ataraxia. A arte de viver sem medo da morte e com amizades genuinas.'},
+  {num:'11',folder:'cap_08',title:'Epicteto',subtitle:'A Dicotomia do Controle - Estoicismo Pratico',author:'Estoicismo',module:'Modulo 3 - Grecia Classica e Estoicismo',img:'assets/images/marco_aurelio.png',file:'Capitulo_08_Epicteto.md',desc:'O ex-escravo que ensinou aos imperadores a ciência do autodominio. O que esta em nosso poder e o que nao esta?'},
+  {num:'12',folder:'cap_09',title:'Seneca',subtitle:'A Brevidade da Vida - Tempo e Morte',author:'Estoicismo',module:'Modulo 3 - Grecia Classica e Estoicismo',img:'assets/images/marco_aurelio.png',file:'Capitulo_09_Seneca.md',desc:'A vida nao e breve; nos a tornamos breve. Seneca sobre o desperdicio do tempo, a morte como mestra e o ocio filosofico.'},
+  {num:'13',folder:'cap_10',title:'Marco Aurelio',subtitle:'As Meditacoes - O Imperador Filosofo',author:'Estoicismo',module:'Modulo 3 - Grecia Classica e Estoicismo',img:'assets/images/marco_aurelio.png',file:'Capitulo_10_Marco_Aurelio.md',desc:'O homem mais poderoso do mundo escrevia diarios filosoficos para si mesmo. A Cidadela Interior e o paradoxo de um imperador que desejava ser apenas sabio.'},
+  {num:'S3',folder:'cap_S3',title:'Síntese do Módulo 3',subtitle:'A Virtude e o Equilíbrio da Alma',author:'A Grande Síntese',module:'Modulo 3 - Grecia Classica e Estoicismo',img:'assets/images/socrates.png',file:'Capitulo_Sintese_Modulo_3.md',desc:'O diálogo entre a busca racional grega pela virtude e a resiliência das filosofias de ataraxia.',isSynthesis:true},
+
+  // Modulo 4 - Fe, Razao e Transicao Medieval
+  {num:'14',folder:'cap_11',title:'Santo Agostinho',subtitle:'As Confissoes - O Tempo e a Memoria',author:'Idade Media',module:'Modulo 4 - Fe, Razao e Transicao Medieval',img:'assets/images/descartes.png',file:'Capitulo_11_Santo_Agostinho.md',desc:'A autobiografia mais influente da historia ocidental. O tempo como distentio animi e o palacio da memoria.'},
+  {num:'15',folder:'cap_12',title:'Sao Tomas de Aquino',subtitle:'A Escolastica - Fe e Razao',author:'Idade Media',module:'Modulo 4 - Fe, Razao e Transicao Medieval',img:'assets/images/descartes.png',file:'Capitulo_12_Sao_Tomas_de_Aquino.md',desc:'As Cinco Vias para provar a existencia de Deus e a grande conciliacao entre Aristoteles e o Cristianismo.'},
+  {num:'16',folder:'cap_13',title:'Nicolau Maquiavel',subtitle:'O Principe - Realpolitik e Verdade Efetiva',author:'Renascimento',module:'Modulo 4 - Fe, Razao e Transicao Medieval',img:'assets/images/descartes.png',file:'Capitulo_13_Nicolau_Maquiavel.md',desc:'A politica como ela realmente e, nao como deveria ser. Virtude, Fortuna e o uso cirurgico do poder.'},
+  {num:'S4',folder:'cap_S4',title:'Síntese do Módulo 4',subtitle:'Fé, Razão e o Nascimento do Poder Real',author:'A Grande Síntese',module:'Modulo 4 - Fe, Razao e Transicao Medieval',img:'assets/images/descartes.png',file:'Capitulo_Sintese_Modulo_4.md',desc:'Como a síntese medieval entre fé e razão abre espaço para a pragmática realista da política moderna.',isSynthesis:true},
+
+  // Modulo 5 - Contrato Social, Poder e Revolucao
+  {num:'17',folder:'cap_14',title:'Rene Descartes',subtitle:'Cogito Ergo Sum - Penso, Logo Existo',author:'Modernidade',module:'Modulo 5 - Contrato Social, Poder e Revolucao',img:'assets/images/descartes.png',file:'Capitulo_14_Rene_Descartes.md',desc:'Apos duvidar de tudo, Descartes encontrou uma pedra inabalavel: o proprio ato de pensar. Uma ideia que nasceu perto do fogo.'},
+  {num:'18',folder:'cap_15',title:'Locke e Hobbes',subtitle:'O Contrato Social - Leviata e Tabula Rasa',author:'Modernidade',module:'Modulo 5 - Contrato Social, Poder e Revolucao',img:'assets/images/descartes.png',file:'Capitulo_15_John_Locke_e_Thomas_Hobbes.md',desc:'Dois visionarios, duas respostas opostas ao mesmo problema: o que nos faz obedecer ao Estado?'},
+  {num:'19',folder:'cap_25',title:'Jean-Jacques Rousseau',subtitle:'O Bom Selvagem e a Vontade Geral',author:'Iluminismo Frances',module:'Modulo 5 - Contrato Social, Poder e Revolucao',img:'assets/images/rousseau.png',file:'Capitulo_25_Rousseau.md',desc:'A civilizacao corrompeu o homem. Rousseau e a dinamite intelectual da Revolucao Francesa: a vontade geral, a critica a propriedade e a educacao natural.'},
+  {num:'20',folder:'cap_27',title:'Voltaire',subtitle:'A Razao contra o Fanatismo',author:'Iluminismo Frances',module:'Modulo 5 - Contrato Social, Poder e Revolucao',img:'assets/images/voltaire.png',file:'Capitulo_27_Voltaire.md',desc:'Esmagar o infame! O maior polemista do Iluminismo e sua guerra ironica e implacavel contra a superstição, o fanatismo e a intolerancia religiosa.'},
+  {num:'21',folder:'cap_16',title:'Immanuel Kant',subtitle:'Critica da Razao Pura - Fenomeno e Noumeno',author:'Iluminismo',module:'Modulo 5 - Contrato Social, Poder e Revolucao',img:'assets/images/descartes.png',file:'Capitulo_16_Immanuel_Kant.md',desc:'A revolucao copernicana da filosofia. Os limites do conhecimento humano e o Imperativo Categorico.'},
+  {num:'S5',folder:'cap_S5',title:'Síntese do Módulo 5',subtitle:'A Razão, o Pacto e as Sombras do Estado',author:'A Grande Síntese',module:'Modulo 5 - Contrato Social, Poder e Revolucao',img:'assets/images/descartes.png',file:'Capitulo_Sintese_Modulo_5.md',desc:'Uma retrospectiva crítica sobre a fundamentação racional do indivíduo e as diferentes teorias sobre a sociedade civil.',isSynthesis:true},
+
+  // Modulo 6 - Razao, Critica e Crise da Modernidade
+  {num:'22',folder:'cap_26',title:'Karl Marx',subtitle:'Alienacao, Luta de Classes e o Capital',author:'Materialismo Historico',module:'Modulo 6 - Razao, Critica e Modernidade',img:'assets/images/marx.png',file:'Capitulo_26_Karl_Marx.md',desc:'O filosofo que queria transformar o mundo. A alienacao do trabalho, a mais-valia e a dialética materialista como chave para entender o capitalismo de hoje.'},
+  {num:'23',folder:'cap_17',title:'Arthur Schopenhauer',subtitle:'O Mundo como Vontade e Representacao',author:'Existencialismo',module:'Modulo 6 - Razao, Critica e Modernidade',img:'assets/images/nietzsche.png',file:'Capitulo_17_Arthur_Schopenhauer.md',desc:'O Veu de Maya, o Pendulo entre dor e tedio, e as tres vias de libertacao: Arte, Compaixao e Ascese.'},
+  {num:'24',folder:'cap_18',title:'Friedrich Nietzsche',subtitle:'Assim Falou Zaratustra - A Morte de Deus',author:'Existencialismo',module:'Modulo 6 - Razao, Critica e Modernidade',img:'assets/images/nietzsche.png',file:'Capitulo_18_Friedrich_Nietzsche.md',desc:'Deus esta morto e nos o matamos. O Ubermensch, o Eterno Retorno e o Amor Fati, a filosofia mais mal-interpretada da historia.'},
+  {num:'S6',folder:'cap_S6',title:'Síntese do Módulo 6',subtitle:'O Trabalho, a Vontade e a Superação do Niilismo',author:'A Grande Síntese',module:'Modulo 6 - Razao, Critica e Modernidade',img:'assets/images/nietzsche.png',file:'Capitulo_Sintese_Modulo_6.md',desc:'Como a crise moderna culmina no embate entre a libertação materialista e as respostas metafísicas ao niilismo.',isSynthesis:true},
+
+  // Modulo 7 - Existencia, Angustia e o Inconsciente
+  {num:'25',folder:'cap_28',title:'Soren Kierkegaard',subtitle:'A Angustia e o Salto de Fe',author:'Existencialismo',module:'Modulo 7 - Existencia, Angustia e o Inconsciente',img:'assets/images/kierkegaard.png',file:'Capitulo_28_Kierkegaard.md',desc:'A vertigem da liberdade total. O pai do existencialismo e os tres estagios da existencia: estetico, etico e religioso. O desespero como caminho para o si-mesmo.'},
+  {num:'26',folder:'cap_19',title:'Sartre e Beauvoir',subtitle:'A Condenacao a Liberdade',author:'Existencialismo',module:'Modulo 7 - Existencia, Angustia e o Inconsciente',img:'assets/images/sartre.png',file:'Capitulo_19_Jean_Paul_Sartre.md',desc:'Voce nao nasceu com um proposito. Essa e a noticia mais aterrorizante e a mais libertadora que um filosofo ja anunciou.'},
+  {num:'27',folder:'cap_20',title:'Sigmund Freud',subtitle:'A Descoberta do Inconsciente',author:'Psicanalise',module:'Modulo 7 - Existencia, Angustia e o Inconsciente',img:'assets/images/freud.png',file:'Capitulo_20_Sigmund_Freud.md',desc:'Apenas a ponta do iceberg e visivel. Id, Ego, Superego e a gramatica oculta dos nossos sonhos.'},
+  {num:'28',folder:'cap_21',title:'Carl Gustav Jung',subtitle:'Arquetipos e Individuacao',author:'Psicologia Analitica',module:'Modulo 7 - Existencia, Angustia e o Inconsciente',img:'assets/images/jung.png',file:'Capitulo_21_Carl_Gustav_Jung.md',desc:'O Heroi, a Sombra, a Anima. Jung descobriu que compartilhamos uma psique coletiva ancestral. A Jornada do Heroi dentro de voce.'},
+  {num:'S7',folder:'cap_S7',title:'Síntese do Módulo 7',subtitle:'O Labirinto da Alma e as Fronteiras do Eu',author:'A Grande Síntese',module:'Modulo 7 - Existencia, Angustia e o Inconsciente',img:'assets/images/sartre.png',file:'Capitulo_Sintese_Modulo_7.md',desc:'O fechamento da nossa jornada existencial e psicológica pelas vias da responsabilidade e do auto-descobrimento arquetípico.',isSynthesis:true}
+];
+
+const FEATURED = Array.from({length: CHAPTERS.length}, (_, i) => i);
+const MODULES = [
+  {label:'Módulo 1 - Abertura: O Espanto Filosófico', range:[0,3]},
+  {label:'Módulo 2 - Sabedoria Oriental', range:[4,7]},
+  {label:'Módulo 3 - Grécia Clássica e Estoicismo', range:[8,15]},
+  {label:'Módulo 4 - Fé, Razão e Transição Medieval', range:[16,19]},
+  {label:'Módulo 5 - Contrato Social, Poder e Revolução', range:[20,25]},
+  {label:'Módulo 6 - Razão, Crítica e Crise da Modernidade', range:[26,29]},
+  {label:'Módulo 7 - Existência, Angústia e o Inconsciente', range:[30,34]}
+];
+
+function buildGallery(){
+  const grid = document.getElementById('gallery-grid');
+  FEATURED.forEach((idx,i)=>{
+    const c = CHAPTERS[idx];
+    const card = document.createElement('div');
+    card.className = 'chapter-card reveal';
+    card.style.transitionDelay = (i%3*0.1)+'s';
+    card.setAttribute('role','article');
+    card.onclick = () => openChapter(idx);
+    card.innerHTML = `
+      <div class="chapter-img-wrap">
+        <img src="assets/images/chapters/${c.folder || 'cap_' + c.num}/img_a.png" alt="${c.title}" loading="lazy" onerror="this.onerror=null; this.src='${c.img}';" />
+        <div class="chapter-img-overlay"></div>
+        <span class="chapter-num-badge">${c.isSynthesis ? 'Síntese' : 'Cap. ' + c.num}</span>
+        <span class="module-badge">${c.module.split('-')[0].trim()}</span>
+      </div>
+      <div class="chapter-body">
+        <div class="chapter-philosopher">${c.author}</div>
+        <h3 class="chapter-title">${c.title} &mdash; ${c.subtitle}</h3>
+        <p class="chapter-desc">${c.desc}</p>
+        <button class="chapter-read-btn">
+          ${c.isSynthesis ? 'Ler Síntese' : 'Ler Capítulo'}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>`;
+    grid.appendChild(card);
+    revealObserver.observe(card);
+  });
+}
+
+function buildChapterList(){
+  const container = document.getElementById('chapters-container');
+  MODULES.forEach(mod=>{
+    const header = document.createElement('div');
+    header.className='module-section-header reveal';
+    header.innerHTML=`<div class="mod-line"></div><span class="mod-label">&#128230; ${mod.label}</span><div class="mod-line"></div>`;
+    container.appendChild(header);
+    revealObserver.observe(header);
+    for(let i=mod.range[0];i<=mod.range[1];i++){
+      const c=CHAPTERS[i];
+      const item=document.createElement('button');
+      item.className='chapter-list-item reveal';
+      item.id='ch-'+c.num;
+      item.setAttribute('aria-label',c.isSynthesis ? 'Abrir ' + c.title : 'Abrir capítulo '+c.num+': '+c.title);
+      item.innerHTML=`
+        <div class="chapter-list-num" style="${c.isSynthesis ? 'font-size:1.4rem;color:var(--gold-light)' : ''}">${c.isSynthesis ? '✦' : c.num}</div>
+        <div class="chapter-list-divider"></div>
+        <div class="chapter-list-info">
+          <div class="chapter-list-author">${c.author}</div>
+          <div class="chapter-list-title">${c.title} &mdash; ${c.subtitle}</div>
+          <div class="chapter-list-module">${c.module}</div>
+        </div>
+        <svg class="chapter-list-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
+      item.onclick=()=>openChapter(i);
+      container.appendChild(item);
+      revealObserver.observe(item);
+    }
+  });
+}
+
+const revealObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+window.addEventListener('scroll',()=>{
+  const pct=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
+  document.getElementById('progressBar').style.width=Math.min(pct,100)+'%';
+});
+
+const QUOTES=[
+  {text:'A vida não examinada não merece ser vivida.',author:'Sócrates'},
+  {text:'Não sofremos pela ausência de boas fortunas, mas pela presença de maus julgamentos.',author:'Epicteto'},
+  {text:'A vida é breve. Carpe Diem.',author:'Sêneca'},
+  {text:'Penso, logo existo.',author:'René Descartes'},
+  {text:'Deus está morto. E nós o matamos.',author:'Friedrich Nietzsche'},
+  {text:'A existência precede a essência.',author:'Jean-Paul Sartre'},
+  {text:'Quem olha para fora, sonha; quem olha para dentro, desperta.',author:'Carl Gustav Jung'},
+  {text:'O Tao que pode ser nomeado não é o Tao eterno.',author:'Lao Tzu'},
+  {text:'Toda a existência é sofrimento.',author:'Siddhartha Gautama'},
+  {text:'Fora da caverna: o Sol não ofusca, revela.',author:'Platão'}
+];
+let qIdx=0;
+const qEl=document.getElementById('rotating-quote');
+const aEl=document.getElementById('rotating-author');
+qEl.style.transition=aEl.style.transition='opacity 0.6s ease';
+setInterval(()=>{
+  qEl.style.opacity=aEl.style.opacity='0';
+  setTimeout(()=>{qIdx=(qIdx+1)%QUOTES.length;qEl.textContent='"'+QUOTES[qIdx].text+'"';aEl.textContent='— '+QUOTES[qIdx].author;qEl.style.opacity=aEl.style.opacity='1'},600);
+},8000);
+
+let currentIdx=0;
+function openChapter(idx){
+  currentIdx=idx;
+  const c=CHAPTERS[idx];
+  const modalImg = document.getElementById('modalImg');
+  modalImg.src = `assets/images/chapters/${c.folder || 'cap_' + c.num}/img_a.png`;
+  modalImg.alt = c.title;
+  modalImg.onerror = function() {
+    this.onerror = null;
+    this.src = c.img;
+  };
+  document.getElementById('modalChapterNum').textContent=c.isSynthesis ? 'Síntese de Conexão | '+c.author : 'Capítulo '+c.num+' | '+c.author;
+  document.getElementById('modal-title').textContent=c.title+' - '+c.subtitle;
+  document.getElementById('prevBtn').disabled=idx===0;
+  document.getElementById('nextBtn').disabled=idx===CHAPTERS.length-1;
+  document.getElementById('modalBody').innerHTML='<p style="text-align:center;color:var(--text-muted);padding:3rem">Carregando capitulo...</p>';
+  document.getElementById('readerModal').classList.add('active');
+  document.body.style.overflow='hidden';
+  const md = (typeof CHAPTER_CONTENT !== 'undefined' && CHAPTER_CONTENT[c.file]) ? CHAPTER_CONTENT[c.file] : null;
+  const capNum = c.folder || c.num;
+  if (md) {
+    document.getElementById('modalBody').innerHTML = mdToHtml(md, c);
+    document.getElementById('modalBody').scrollTop = 0;
+    initInteractiveQuiz(lastParsedQuizText);
+  } else {
+    document.getElementById('modalBody').innerHTML = '<div style="text-align:center;padding:3rem"><p style="font-size:3rem;margin-bottom:1rem">&#128218;</p><h3 style="color:var(--gold);font-family:Cinzel,serif;margin-bottom:1rem">'+c.title+'</h3><p style="color:var(--text-muted)">Conteudo nao encontrado para: <code style="color:var(--gold)">'+c.file+'</code></p></div>';
+  }
+}
+function navigateChapter(dir){const n=currentIdx+dir;if(n>=0&&n<CHAPTERS.length)openChapter(n)}
+function closeModal(){document.getElementById('readerModal').classList.remove('active');document.body.style.overflow=''}
+document.getElementById('readerModal').addEventListener('click',e=>{if(e.target===document.getElementById('readerModal'))closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeMobileNav();}});
+
+// ── Menu Hamburguer Mobile ──
+const navHamburger = document.getElementById('navHamburger');
+const navMobileOverlay = document.getElementById('navMobileOverlay');
+function openMobileNav(){
+  navHamburger.classList.add('open');
+  navMobileOverlay.classList.add('open');
+  navHamburger.setAttribute('aria-expanded','true');
+  document.body.style.overflow='hidden';
+}
+function closeMobileNav(){
+  navHamburger.classList.remove('open');
+  navMobileOverlay.classList.remove('open');
+  navHamburger.setAttribute('aria-expanded','false');
+  document.body.style.overflow='';
+}
+navHamburger.addEventListener('click',()=>{
+  navHamburger.classList.contains('open') ? closeMobileNav() : openMobileNav();
+});
+navMobileOverlay.addEventListener('click',e=>{if(e.target===navMobileOverlay)closeMobileNav();});
+
+function chapterIllustration(capNum, imgLetter, labelText, imgIdx) {
+  const folderName = capNum.startsWith('cap_') ? capNum : `cap_${capNum}`;
+  const src = `assets/images/chapters/${folderName}/img_${imgLetter}.png`;
+  return `
+    <div class="chapter-illustration-wrapper">
+      <div class="chapter-illustration-separator"><span>✦</span></div>
+      <figure class="chapter-illustration" role="img" aria-label="Ilustracao do capitulo ${folderName}">
+        <img src="${src}" alt="${labelText}" loading="lazy"
+             onerror="const wrapper = this.closest('.chapter-illustration-wrapper'); if(wrapper) wrapper.style.display='none';" />
+        <div class="chapter-illustration-bar">
+          <span class="chapter-illustration-label">${labelText}</span>
+        </div>
+      </figure>
+      <div class="chapter-illustration-separator"><span>✦</span></div>
+    </div>`;
+}
+
+let lastParsedQuizText = '';
+
+function parseInteractiveQuiz(quizText) {
+  const lines = quizText.split('\n');
+  const questions = [];
+  let currentQuestion = null;
+  let gabaritoCount = 1;
+  let inOpenQuestion = false;
+  let openQuestionText = '';
+  let inReflection = false;
+  let reflectionText = '';
+  const explanations = {};
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (!line) continue;
+
+    if (/^(?:####|###)\s*(?:Pergunta Aberta|Questão Aberta|Provocação Filosófica|Provocacao Filosofica)/i.test(line)) {
+      inOpenQuestion = true;
+      inReflection = false;
+      continue;
+    }
+    if (/^(?:####|###|\*\*|\*)\s*(?:Aplique o Conceito|Verdadeiro ou Falso|Exercício Prático|Reflexão Prática)/i.test(line)) {
+      inReflection = true;
+      inOpenQuestion = false;
+      reflectionText += '\n' + line + '\n';
+      continue;
+    }
+    if (/^(?:####|###)\s*(?:Gabarito|Respostas?|Gabarito Comentado)/i.test(line)) {
+      inReflection = false;
+      continue;
+    }
+
+    if (inOpenQuestion) {
+      openQuestionText += line.replace(/\*\*/g, '') + ' ';
+      continue;
+    }
+
+    if (inReflection) {
+      reflectionText += line + '\n';
+      continue;
+    }
+
+    // Try Question Match B: Questão 1: ... or Quiz 1: ...
+    const qMatchB = line.match(/^(?:\*\*|\*|)?(?:Quest[ãa]o|Quiz)\s*(\d+)[^*:]*(?:\*\*|\*|)?(?::\s*(.*))?$/i);
+    if (qMatchB) {
+      const qNum = parseInt(qMatchB[1], 10);
+      let qText = qMatchB[2] ? qMatchB[2].trim() : '';
+      qText = qText.replace(/^\*\*?/, '').replace(/\*\*?$/, '').trim();
+      
+      // Lookahead if question text is empty on this line
+      if (!qText) {
+        let nextIdx = i + 1;
+        while (nextIdx < lines.length && !lines[nextIdx].trim()) {
+          nextIdx++;
+        }
+        if (nextIdx < lines.length) {
+          qText = lines[nextIdx].trim();
+          qText = qText.replace(/^\*\*?/, '').replace(/\*\*?$/, '').trim();
+          i = nextIdx; // Advance outer loop index
+        }
+      }
+      
+      currentQuestion = {
+        num: qNum,
+        question: qText,
+        options: []
+      };
+      questions.push(currentQuestion);
+      continue;
+    }
+    
+    // Try Question Match A: 1. ...
+    const qMatchA = line.match(/^(?:\*\*|\*|)?(\d+)\.\s+(.+)$/);
+    const isAnswerLine = /correta|resposta|gabarito/i.test(line);
+    if (qMatchA && !isAnswerLine) {
+      const qNum = parseInt(qMatchA[1], 10);
+      let qText = qMatchA[2].trim();
+      qText = qText.replace(/^\*\*?/, '').replace(/\*\*?$/, '').trim();
+      currentQuestion = {
+        num: qNum,
+        question: qText,
+        options: []
+      };
+      questions.push(currentQuestion);
+      continue;
+    }
+
+    // Options Match: * A) ... or A) ...
+    const optMatch = line.match(/^(?:[\*\-]\s*)?([A-D])\)\s*(.+)$/);
+    if (optMatch && currentQuestion) {
+      currentQuestion.options.push({
+        letter: optMatch[1],
+        text: optMatch[2].replace(/\*\*/g, '').trim()
+      });
+      continue;
+    }
+
+    // Gabarito Match A: 1. **Alternativa Correta: ...** or * **1. Alternativa Correta: ...**
+    const ansMatchA = line.match(/^(?:[\*\-]\s*)?(?:\*\*|\*)?(\d+)\.\s*(?:\*\*|\*)?[^*]*(?:Correta|Resposta|Gabarito)[^*]*:\s*(?:\*\*|\*)?([A-D])(?:\*\*|\*)?\)?/i);
+    if (ansMatchA) {
+      const qNum = parseInt(ansMatchA[1], 10);
+      const correctLetter = ansMatchA[2];
+      explanations[qNum] = {
+        correct: correctLetter,
+        text: ''
+      };
+      const rest = line.replace(/^(?:[\*\-]\s*)?(?:\*\*|\*)?(\d+)\.\s*(?:\*\*|\*)?[^*]*(?:Correta|Resposta|Gabarito)[^*]*:\s*(?:\*\*|\*)?([A-D])(?:\*\*|\*)?\)?/i, '').trim();
+      if (rest) {
+        explanations[qNum].text = rest.replace(/\*\*/g, '');
+      }
+      continue;
+    }
+    
+    // Gabarito Match B: **Gabarito:** B. ...
+    const ansMatchB = line.match(/^(\*\*|\*)?Gabarito(?:\s+(\d+))?:?(\*\*|\*)?\s*([A-D])(?:\.|\s|\)|$)\s*(.*)$/i);
+    if (ansMatchB) {
+      const qNum = ansMatchB[2] ? parseInt(ansMatchB[2], 10) : gabaritoCount++;
+      const correctLetter = ansMatchB[4];
+      explanations[qNum] = {
+        correct: correctLetter,
+        text: ansMatchB[5] ? ansMatchB[5].replace(/\*\*/g, '').trim() : ''
+      };
+      continue;
+    }
+
+    // Gabarito Match C: * **Gabarito comentado:** A alternativa correta é a **B**...
+    const ansMatchC = line.match(/^(?:[\*\-]\s*)?(\*\*|\*)?Gabarito[^*:]*:?(\*\*|\*)?\s*(?:A\s+)?alternativa\s+correta\s+é\s+(?:a\s+)?(?:\*\*|\*)?([A-D])(?:\*\*|\*)?/i);
+    if (ansMatchC) {
+      const qNum = gabaritoCount++;
+      const correctLetter = ansMatchC[3];
+      const rest = line.replace(ansMatchC[0], '').trim().replace(/^[\.\-\:]\s*/, '').trim();
+      explanations[qNum] = {
+        correct: correctLetter,
+        text: rest.replace(/\*\*/g, '')
+      };
+      continue;
+    }
+
+    const expMatch = line.match(/^[\*\-]\s+\*(?:Justificativa|Explicação|Explicacao):\*\s*(.+)/i);
+    if (expMatch) {
+      const keys = Object.keys(explanations);
+      if (keys.length > 0) {
+        const lastKey = keys[keys.length - 1];
+        explanations[lastKey].text += ' ' + expMatch[1].trim();
+      }
+      continue;
+    }
+  }
+
+  questions.forEach(q => {
+    if (explanations[q.num]) {
+      q.correct = explanations[q.num].correct;
+      q.explanation = explanations[q.num].text.replace(/\*/g, '').trim();
+    }
+  });
+
+  const filteredQ = questions.filter(q => q.question && q.options.length > 0 && q.correct);
+  return {
+    questions: filteredQ,
+    openQuestion: openQuestionText.trim(),
+    reflection: reflectionText.trim()
+  };
+}
+
+function initInteractiveQuiz(quizText) {
+  const container = document.getElementById('interactive-quiz-container');
+  if (!container) return;
+
+  const result = parseInteractiveQuiz(quizText);
+  const questions = result.questions.slice(0, 3);
+  const openQ = result.openQuestion;
+  const reflection = result.reflection;
+
+  if (questions.length === 0) {
+    // If parsing failed, render the raw Markdown quiz block
+    container.innerHTML = `
+      <div class="quiz-widget" style="padding:1.5rem;border-color:rgba(201,168,76,0.1)">
+        <h4 class="quiz-title" style="margin-bottom:1rem">Perguntas de Fixação</h4>
+        <div style="font-size:0.95rem;line-height:1.6;color:rgba(240,232,213,0.8)">
+          ${mdToHtml(quizText, 'dummy')}
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  renderQuizQuestion(container, questions, 0, 0, openQ);
+}
+
+function renderQuizQuestion(container, questions, idx, score, openQ) {
+  const q = questions[idx];
+  container.innerHTML = `
+    <div class="quiz-widget">
+      <div class="quiz-header">
+        <h4 class="quiz-title">Quiz de Fixação</h4>
+        <span class="quiz-progress">Pergunta ${idx + 1} de ${questions.length}</span>
+      </div>
+      <div class="quiz-question">${q.question}</div>
+      <div class="quiz-options">
+        ${q.options.map(opt => `
+          <button class="quiz-opt-btn" data-letter="${opt.letter}">
+            <span style="font-weight:bold;color:var(--gold-light)">${opt.letter})</span> ${opt.text}
+          </button>
+        `).join('')}
+      </div>
+      <div id="quiz-feedback-container"></div>
+    </div>
+  `;
+
+  const buttons = container.querySelectorAll('.quiz-opt-btn');
+  buttons.forEach(btn => {
+    btn.onclick = () => {
+      buttons.forEach(b => b.disabled = true);
+      const selectedLetter = btn.getAttribute('data-letter');
+      const isCorrect = selectedLetter === q.correct;
+      
+      btn.classList.add('selected');
+      if (isCorrect) {
+        btn.classList.add('correct');
+        score++;
+      } else {
+        btn.classList.add('incorrect');
+        buttons.forEach(b => {
+          if (b.getAttribute('data-letter') === q.correct) {
+            b.classList.add('correct');
+          }
+        });
+      }
+
+      const feedbackContainer = container.querySelector('#quiz-feedback-container');
+      feedbackContainer.innerHTML = `
+        <div class="quiz-feedback ${isCorrect ? 'correct-bg' : 'incorrect-bg'}">
+          <div class="quiz-feedback-title ${isCorrect ? 'correct-text' : 'incorrect-text'}">
+            ${isCorrect ? '✓ Correto!' : '✗ Incorreto'}
+          </div>
+          <div class="quiz-explanation">${q.explanation || ''}</div>
+          <button class="quiz-next-btn" id="quiz-next-action" style="margin-top:1rem">
+            ${idx === questions.length - 1 ? 'Concluir Quiz' : 'Próxima Pergunta'}
+          </button>
+        </div>
+      `;
+
+      container.querySelector('#quiz-next-action').onclick = () => {
+        if (idx < questions.length - 1) {
+          renderQuizQuestion(container, questions, idx + 1, score, openQ);
+        } else {
+          let openQHtml = '';
+          if (openQ) {
+            openQHtml += `
+              <div style="margin-top:2rem;border-top:1px solid rgba(201,168,76,0.15);padding-top:1.5rem;text-align:left">
+                <h5 style="font-family:'Cinzel',serif;color:var(--gold-light);margin-bottom:0.75rem;font-size:0.95rem;letter-spacing:0.05em">✦ Provocação Filosófica</h5>
+                <p style="font-size:0.95rem;line-height:1.65;color:rgba(240,232,213,0.85);font-style:italic;background:rgba(201,168,76,0.02);padding:1rem;border-radius:6px;border-left:2px solid var(--gold)">
+                  "${openQ}"
+                </p>
+              </div>
+            `;
+          }
+          if (reflection) {
+            const reflectionHtml = mdToHtml(reflection, {num:'dummy'});
+            openQHtml += `
+              <div style="margin-top:2rem;border-top:1px solid rgba(201,168,76,0.15);padding-top:1.5rem;text-align:left">
+                <h5 style="font-family:'Cinzel',serif;color:var(--gold-light);margin-bottom:0.75rem;font-size:0.95rem;letter-spacing:0.05em">✦ Exercícios Práticos & Reflexão</h5>
+                <div style="font-size:0.95rem;line-height:1.6;color:rgba(240,232,213,0.85)">
+                  ${reflectionHtml}
+                </div>
+              </div>
+            `;
+          }
+          container.innerHTML = `
+            <div class="quiz-widget" style="text-align:center;padding:3rem 2rem">
+              <div style="font-size:3rem;margin-bottom:1rem">🏆</div>
+              <h4 class="quiz-title" style="margin-bottom:1rem">Quiz Concluído!</h4>
+              <p style="font-size:1.1rem;color:rgba(240,232,213,0.9);margin-bottom:1.5rem">
+                Você acertou <strong style="color:var(--gold-light);font-size:1.4rem">${score}</strong> de <strong style="font-size:1.4rem">${questions.length}</strong> perguntas.
+              </p>
+              <button class="quiz-next-btn" style="float:none" id="quiz-restart-btn">Refazer Quiz</button>
+              ${openQHtml}
+            </div>
+          `;
+          container.querySelector('#quiz-restart-btn').onclick = () => {
+            renderQuizQuestion(container, questions, 0, 0, openQ);
+          };
+        }
+      };
+    };
+  });
+}
+
+function mdToHtml(md, c){
+  const capNum = c.folder || c.num;
+  const lines = md.split('\n');
+  let html = '';
+  let sectionCount = 0;
+  let imgAInjected = false;
+  let imgBInjected = false;
+  let imgCInjected = false;
+  let inParagraph = false;
+  let inList = false;
+  let inListType = null;
+  let inQuizSection = false;
+  let inDebateSection = false;
+  let inGlossarySection = false;
+  let inGabaritoSection = false;
+  let inGabaritoCard = false;
+  let inCodeBlock = false;
+  let isMermaid = false;
+  let codeText = '';
+  let quizText = '';
+  let inPromptsSection = false;
+  lastParsedQuizText = '';
+
+  function formatMarkdown(str) {
+    if (!str) return '';
+    // Escapar HTML primeiro para evitar injeção ou quebra de tags
+    const escaped = str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+    return escaped
+      .replace(/prompts\s+ilustrativos/gi, 'Representações Visuais')
+      .replace(/prompts\s+ilustrativas/gi, 'Representações Visuais')
+      .replace(/prompts/gi, 'Representações Visuais')
+      .replace(/prompt/gi, 'Descrição Visual')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>');
+  }
+
+  const imgLabels = [
+    c.title + ' — Contexto Histórico',
+    c.title + ' — Pensamento Central',
+    c.title + ' — Reflexão e Legado'
+  ];
+
+  function closeParagraph() {
+    if(inParagraph){html+='</p>';inParagraph=false;}
+  }
+  function openParagraph() {
+    if(!inParagraph){html+='<p>';inParagraph=true;}
+  }
+  function closeList() {
+    if(inList){html+='</' + inListType + '>';inList=false;inListType=null;}
+  }
+
+  for(let i=0;i<lines.length;i++){
+    const line = lines[i];
+    
+    // Detecta início da seção de Prompts/Galeria Mental
+    if(/^#+\s+(?:\d+\.\s+)?(?:Galeria Mental|Prompts Ilustrativos|Prompts de Imagem|Galeria Mental e Prompts)/i.test(line)){
+      inPromptsSection = true;
+      continue;
+    }
+    
+    // Se estiver na seção de Prompts, ignora tudo até encontrar o próximo cabeçalho da próxima seção
+    if(inPromptsSection){
+      if((/^(?:###|##|#)\s+/.test(line) || line.trim() === '---') && !/Galeria Mental|Prompts/i.test(line)){
+        inPromptsSection = false; // Sai da seção de prompts
+      } else {
+        continue; // Ignora o conteúdo
+      }
+    }
+    
+    // Code block parser
+    if(/^```/.test(line.trim())){
+      closeList(); closeParagraph();
+      if(!inCodeBlock){
+        inCodeBlock = true;
+        isMermaid = /mermaid/i.test(line);
+        codeText = '';
+      } else {
+        inCodeBlock = false;
+        if(isMermaid){
+          // Ignora o diagrama Mermaid
+        } else {
+          const escapedCode = codeText
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+          html += `<pre><code>${escapedCode}</code></pre>`;
+        }
+      }
+      continue;
+    }
+
+    if(inCodeBlock){
+      codeText += line + '\n';
+      continue;
+    }
+    
+    // Check headings to close special sections
+    if(/^#+ /.test(line)){
+      if(inQuizSection && !/^###\s+(?:9\b|.*Quiz)/i.test(line)) {
+        inQuizSection = false;
+      }
+      if(inDebateSection) {
+        html += '</div>';
+        inDebateSection = false;
+      }
+      if(inGlossarySection) {
+        html += '</div>';
+        inGlossarySection = false;
+      }
+      if(inGabaritoCard) {
+        html += '</div>';
+        inGabaritoCard = false;
+      }
+      if(inGabaritoSection) {
+        html += '</div>';
+        inGabaritoSection = false;
+      }
+
+      if(/^###\s+(?:9\b|.*Quiz)/i.test(line)){
+        closeList(); closeParagraph();
+        inQuizSection = true;
+        quizText = '';
+        html += `<div id="interactive-quiz-container"></div>`;
+        continue;
+      }
+      if(/^###\s+(?:10|7)\.\s+Debate\s+a\s+Dois/i.test(line)){
+        closeList(); closeParagraph();
+        inDebateSection = true;
+        html += `<div class="debate-dois-card">`;
+      }
+      if(/^###\s+(?:11|8)\.\s+Gloss[áa]rio/i.test(line)){
+        closeList(); closeParagraph();
+        inGlossarySection = true;
+        html += `<div class="glossary-card">`;
+      }
+      if(/^(?:####|###)\s*(?:Gabarito|Respostas?|Gabarito Comentado)/i.test(line)){
+        closeList(); closeParagraph();
+        inGabaritoSection = true;
+        html += `<h3>Gabarito Comentado</h3>`;
+        html += `<div class="gabarito-comentado-container">`;
+        continue;
+      }
+    }
+
+    if(inQuizSection){
+      quizText += line + '\n';
+      continue;
+    }
+
+    if(inGabaritoSection){
+      const trimmedLine = line.trim();
+      if(trimmedLine !== ''){
+        // 1. **Alternativa Correta...** ou 1. Alternativa...
+        if(/^\s*(\d+)\.\s+(.+)$/.test(line)){
+          const num = RegExp.$1;
+          const text = RegExp.$2;
+          closeList(); closeParagraph();
+          if(inGabaritoCard){
+            html += '</div>'; // fecha o anterior
+          }
+          html += `<div class="gabarito-card">`;
+          html += `<div class="gabarito-question-num">Questão ${num}</div>`;
+          html += `<div class="gabarito-correct-option">${formatMarkdown(text)}</div>`;
+          inGabaritoCard = true;
+          continue;
+        }
+        // * *Justificativa:* ou * Justificativa:
+        if(/^\s*[\*\-]\s+(.+)$/.test(line)){
+          const text = RegExp.$1;
+          closeList(); closeParagraph();
+          html += `<div class="gabarito-explanation">${formatMarkdown(text)}</div>`;
+          continue;
+        }
+      }
+    }
+
+    // Detect h2/h3 headings (section boundaries)
+    if(/^## /.test(line)){sectionCount++;}
+    if(/^### /.test(line)){sectionCount++;}
+
+    // Inject Image A after section 2 (Contexto Historico)
+    if(!imgAInjected && sectionCount>=2){
+      closeList(); closeParagraph();
+      html+=chapterIllustration(capNum,'a',imgLabels[0],1);
+      imgAInjected=true;
+    }
+    // Inject Image B after section 4 (Coracao da Obra)
+    if(!imgBInjected && sectionCount>=4){
+      closeList(); closeParagraph();
+      html+=chapterIllustration(capNum,'b',imgLabels[1],2);
+      imgBInjected=true;
+    }
+    // Inject Image C after section 6 (Curiosidades/Filosofia Pratica)
+    if(!imgCInjected && sectionCount>=6){
+      closeList(); closeParagraph();
+      html+=chapterIllustration(capNum,'c',imgLabels[2],3);
+      imgCInjected=true;
+    }
+
+    if(/^##### /.test(line)){
+      closeList(); closeParagraph();
+      html+='<h5>'+formatMarkdown(line.replace(/^##### /,''))+'</h5>';
+    } else if(/^#### /.test(line)){
+      closeList(); closeParagraph();
+      html+='<h4>'+formatMarkdown(line.replace(/^#### /,''))+'</h4>';
+    } else if(/^### /.test(line)){
+      closeList(); closeParagraph();
+      html+='<h3>'+formatMarkdown(line.replace(/^### /,''))+'</h3>';
+    } else if(/^## /.test(line)){
+      closeList(); closeParagraph();
+      html+='<h2>'+formatMarkdown(line.replace(/^## /,''))+'</h2>';
+    } else if(/^# /.test(line)){
+      closeList(); closeParagraph();
+      html+='<h1>'+formatMarkdown(line.replace(/^# /,''))+'</h1>';
+    } else if(/^>/.test(line)){
+      closeList(); closeParagraph();
+      html+='<blockquote>'+formatMarkdown(line.replace(/^>\s*/,''))+'</blockquote>';
+    } else if(/^\s*[\*\-]\s+/.test(line)){
+      closeParagraph();
+      if(inList && inListType !== 'ul'){ closeList(); }
+      if(!inList){html+='<ul>';inList=true;inListType='ul';}
+      html+='<li>'+formatMarkdown(line.replace(/^\s*[\*\-]\s+/,''))+'</li>';
+    } else if(/^\s*(\d+)\.\s+/.test(line)){
+      closeParagraph();
+      const num = RegExp.$1;
+      const cleanLine = line.replace(/^\s*\d+\.\s+/,'');
+      if(inList && inListType !== 'ol'){ closeList(); }
+      if(!inList){html+='<ol>';inList=true;inListType='ol';}
+      let formattedText = formatMarkdown(cleanLine);
+      if (formattedText.includes('Alternativa Correta')) {
+        formattedText = `<strong>Questão ${num}</strong> — ` + formattedText;
+      }
+      html+='<li>'+formattedText+'</li>';
+    } else if(/^---/.test(line)){
+      closeList(); closeParagraph();
+      html+='<hr style="border:none;border-top:1px solid rgba(201,168,76,0.2);margin:1.5rem 0">';
+    } else if(line.trim()===''&&i>0&&lines[i-1].trim()===''){
+      closeList(); closeParagraph();
+    } else if(line.trim()!==''){
+      closeList();
+      if(!inParagraph){html+='<p>';inParagraph=true;}
+      html+=formatMarkdown(line)+' ';
+    }
+  }
+  closeParagraph();
+  closeList();
+  if(inDebateSection) {
+    html += '</div>';
+    inDebateSection = false;
+  }
+  if(inGlossarySection) {
+    html += '</div>';
+    inGlossarySection = false;
+  }
+  if(inGabaritoCard) {
+    html += '</div>';
+    inGabaritoCard = false;
+  }
+  if(inGabaritoSection) {
+    html += '</div>';
+    inGabaritoSection = false;
+  }
+
+  lastParsedQuizText = quizText;
+
+  // If images weren't injected (short chapters), add them at the end
+  if(capNum !== 'dummy') {
+    if(!imgAInjected) html+=chapterIllustration(capNum,'a',imgLabels[0],1);
+    if(!imgBInjected) html+=chapterIllustration(capNum,'b',imgLabels[1],2);
+    if(!imgCInjected) html+=chapterIllustration(capNum,'c',imgLabels[2],3);
+  }
+
+  return html;
+}
+
+buildGallery();
+buildChapterList();
+</script>
+</body>
+</html>
